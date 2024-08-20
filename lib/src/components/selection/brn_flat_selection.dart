@@ -140,7 +140,8 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
             _lineWidth = size.width;
           });
         },
-        child: _buildSelectionListView());
+        child: 
+        _buildSelectionListView());
   }
 
   @override
@@ -178,6 +179,17 @@ class _BrnFlatSelectionState extends State<BrnFlatSelection>
         _clearUIData(entity);
       }
     }
+    //把数据还原
+    _originalSelectedItemsList.forEach((data) {
+      data.isSelected = true;
+      if (data.customMap != null) {
+        // originalCustomMap 是用来存临时状态数据, customMap 用来展示 ui
+        data.customMap = Map<String, String>();
+        data.originalCustomMap.forEach((key, value) {
+          data.customMap![key.toString()] = value.toString();
+        });
+      }
+    });
   }
 
   /// 确定
