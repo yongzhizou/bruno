@@ -74,6 +74,9 @@ class BrnSearchText extends StatefulWidget {
   /// 文本变化的回调
   final BrnOnSearchTextChange? onTextChange;
 
+  /// 点击搜索框外部的回调
+  final TapRegionCallback? onTapOutside;
+  
   /// 提交文本时的回调
   final BrnOnCommit? onTextCommit;
 
@@ -116,6 +119,7 @@ class BrnSearchText extends StatefulWidget {
     this.textInputAction,
     this.inputFormatters,
     this.textInputType,
+    this.onTapOutside,
   }) : super(key: key);
 
   @override
@@ -213,6 +217,7 @@ class _SearchTextState extends State<BrnSearchText> {
                           controller: textEditingController,
                           keyboardType: widget.textInputType,
                           inputFormatters: widget.inputFormatters,
+                          onTapOutside: widget.onTapOutside,
                           cursorColor: BrnThemeConfigurator.instance
                               .getConfig()
                               .commonConfig
